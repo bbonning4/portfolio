@@ -90,25 +90,46 @@
 							<div class="features">
 								<section>
 									<span class="icon solid major fa-code"></span>
-									<h3>Lorem ipsum amet</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-lock"></span>
-									<h3>Aliquam sed nullam</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
-								<section>
-									<span class="icon solid major fa-cog"></span>
-									<h3>Sed erat ullam corper</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>Skills</h3>
+									<p><strong>Languages:</strong> JavaScript, Python, C, C#, SQL, HTML, CSS</p>
+									<p><strong>Database:</strong> PostgreSQL, SQLite, MongoDB</p>
+									<p><strong>Libraries/Frameworks:</strong> React, Express, Django, Flask, JQuery, Bootstrap, Materialize</p>
 								</section>
 								<section>
 									<span class="icon solid major fa-desktop"></span>
-									<h3>Veroeros quis lorem</h3>
-									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
+									<h3>Project: Chemi</h3>
+									<ul>
+										<li>Chemistry application for compound lookup</li>
+										<li>MEN stack app with RESTful routing</li>
+										<li>Search engine using PUG REST, a PubChem API</li>
+										<li>ChemDoodle Web Components used to build chemical sketcher</li>
+										<li>Google OAuth for authentication</li>
+									</ul>
+									<a href="https://github.com/bbonning4/chemi" target="_blank"> - repo</a>
 								</section>
 								<section>
+									<span class="icon solid major fa-desktop"></span>
+									<h3>Project: Poképedia</h3>
+									<ul>
+										<li>Pokemon search and view products related to that pokemon</li>
+										<li>Full stack Django application using PostgreSQL and python</li>
+										<li>Data obtained using PokeAPI RESTful calls</li>
+										<li>Web scraping of e-commerce sites to obtain images and links to purchase products</li>
+									</ul>
+									<a href="https://github.com/bbonning4/pokepedia" target="_blank"> - repo</a>
+								</section>
+								<section>
+									<span class="icon solid major fa-desktop"></span>
+									<h3>Project: Finance50</h3>
+									<ul>
+										<li>Practice stock trading site with real-time price updates</li>
+										<li>Full stack Flask application using Jinja, SQLite, and python</li>
+										<li>Uses IEX Cloud API for stock market data</li>
+										<li>Built both to run in the CS50 AWS cloud-based IDE and outside the environment</li>
+									</ul>
+									<a href="https://github.com/bbonning4/finance" target="_blank"> - repo</a>
+								</section>
+								<!-- <section>
 									<span class="icon solid major fa-link"></span>
 									<h3>Urna quis bibendum</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
@@ -117,7 +138,7 @@
 									<span class="icon major fa-gem"></span>
 									<h3>Aliquam urna dapibus</h3>
 									<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed ultricies erat dapibus.</p>
-								</section>
+								</section> -->
 							</div>
 							<ul class="actions">
 								<li><a href="resume.html" class="button">Learn more</a></li>
@@ -132,7 +153,7 @@
 							<p>Feel free to get in touch, view my other repos on Github, or connect with me via Linkedin.</p>
 							<div class="split style1">
 								<section>
-									<form method="post" action="#">
+									<form method="post" action="#" id="contact-form" onsubmit="sendEmail(event)">
 										<div class="fields">
 											<div class="field half">
 												<label for="name">Name</label>
@@ -201,6 +222,46 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script type="text/javascript"
+			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+			<script type="text/javascript">
+				(function(){
+					emailjs.init("vtjnhLrUvNMxbgX86");
+				})();
+			</script>
+			<script>
+				function sendEmail(event) {
+					event.preventDefault();
+				
+					// Fetch the values from the form
+					const name = document.getElementById('name').value;
+					const email = document.getElementById('email').value;
+					const message = document.getElementById('message').value;
+				
+					// Prepare the email parameters
 
+					service_id = 'service_hod8cq5';
+					template_id = 'template_u0h2q1r';
+					// user_id: 'YOUR_USER_ID',
+					params = {
+						name: name,
+						email: email,
+						message: message
+					};
+
+			  
+					// Send the email
+					emailjs.send(service_id, template_id, params)
+						.then(function() {
+						alert('Email sent successfully!');
+						}, function(error) {
+							console.log('Email send error:', error);
+							alert('An error occurred while sending the email.');
+						});
+				}
+			  
+				// Attach the form submit event listener
+				document.getElementById('contact-form').addEventListener('submit', sendEmail);
+			</script>
 	</body>
 </html>
