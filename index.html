@@ -45,11 +45,11 @@
 				<!-- One -->
 					<section id="one" class="wrapper style2 spotlights">
 						<section>
-							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
+							<a href="#" class="image"><img id="githubAvatar" src="" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
 									<h2>Software Engineer</h2>
-									<p>Self-taught through General Assembly bootcamp and online courses.  My background as a Ph.D. level research engineer in chemical engineering has proven to be an essential asset in advanced problem-solving.  I'm looking for a career in programming to leverage my background and my skills in C, C#, python, and JavaScript to solve issues.</p>
+									<p id="bioElement">Self-taught through General Assembly bootcamp and online courses.  My background as a Ph.D. level research engineer in chemical engineering has proven to be an essential asset in advanced problem-solving.  I'm looking for a career in programming to leverage my background and my skills in C, C#, python, and JavaScript to solve issues.</p>
 									<ul class="actions">
 										<li><a href="resume.html" class="button">Resume</a></li>
 									</ul>
@@ -91,9 +91,9 @@
 								<section>
 									<span class="icon solid major fa-code"></span>
 									<h3>Skills</h3>
-									<p><strong>Languages:</strong> JavaScript, Python, C, C#, SQL, HTML, CSS</p>
+									<p><strong>Languages:</strong> Java, JavaScript, Python, C, C#, SQL, HTML, CSS</p>
 									<p><strong>Database:</strong> PostgreSQL, SQLite, MongoDB</p>
-									<p><strong>Libraries/Frameworks:</strong> React, Express, Django, Flask, JQuery, Bootstrap, Materialize, Tailwind</p>
+									<p><strong>Libraries/Frameworks:</strong> React, Angular, Spring, Express, Django, Flask, JQuery, Bootstrap, Materialize, Tailwind</p>
 									<p><strong>Other:</strong> AWS, Docker, Git, LLMs</p>
 								</section>
 								<section>
@@ -263,6 +263,31 @@
 			  
 				// Attach the form submit event listener
 				document.getElementById('contact-form').addEventListener('submit', sendEmail);
+			</script>
+			<script>
+				window.addEventListener('load', function() {
+            		fetchAvatar('bbonning4');
+        		});
+
+				function fetchAvatar(username) {
+					fetch(`https://api.github.com/users/${username}`)
+						.then(response => {
+							if (!response.ok) {
+								throw new Error('Network response was not ok');
+							}
+							return response.json();
+						})
+						.then(data => {
+							const avatarElement = document.getElementById('githubAvatar');
+							const bioElement = document.getElementById('bioElement');
+							avatarElement.src = data.avatar_url;
+							bioElement.innerText = data.bio;
+							avatarElement.parentElement.style.backgroundImage = `url(${data.avatar_url})`;
+						})
+						.catch(error => {
+							console.error('GitHub API fetch error:', error);
+						});
+				}
 			</script>
 	</body>
 </html>
